@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MALU | Venta de Ropa</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Reset y estilos base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: #fdfbf8;
+      color: #2c2c2c;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Paleta de colores elegante */
+    :root {
+      --negro: #1a1a1a;
+      --dorado: #c9a961;
+      --dorado-claro: #e0c98a;
+      --rosa: #d4a5a5;
+      --crema: #fdfbf8;
+      --beige: #f5efe6;
+      --gris: #6b6b6b;
+      --carbon: #2c2c2c;
+    }
+
+    /* Botones */
+    .btn {
+      display: inline-block;
+      background-color: var(--negro);
+      border: 2px solid var(--negro);
+      color: white;
+      padding: 14px 36px;
+      font-size: 0.8rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border-radius: 0;
+    }
+
+    .btn:hover {
+      background-color: transparent;
+      color: var(--negro);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--negro);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--negro);
+      color: white;
+    }
+
+    /* ===== HEADER CON LOGO ANIMADO Y MENÚ ===== */
+    header {
+      background-color: var(--crema);
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+      border-bottom: 1px solid var(--beige);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+    }
+
+    /* LOGO ANIMADO MALU */
+    .logo-animado {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+    }
+
+    .logo-icono {
+      position: relative;
+      width: 55px;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Círculo giratorio alrededor del icono */
+    .logo-icono::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 2px dashed var(--dorado);
+      border-radius: 50%;
+      animation: girar 8s linear infinite;
+    }
+
+    @keyframes girar {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .logo-icono i {
+      font-size: 1.8rem;
+      color: var(--dorado);
+      animation: flotar 2.5s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-5px) scale(1.1); }
+    }
+
+    .logo-texto {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-nombre {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--negro);
+      letter-spacing: 6px;
+      line-height: 1;
+      position: relative;
+    }
+
+    /* Efecto de brillo sobre el nombre */
+    .logo-nombre::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.6), transparent);
+      animation: brillo 3s ease-in-out infinite;
+    }
+
+    @keyframes brillo {
+      0% { left: -100%; }
+      50%, 100% { left: 100%; }
+    }
+
+    .logo-tagline {
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--dorado);
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    /* NAVEGACIÓN */
+    .nav-links {
+      display: flex;
+      gap: 45px;
+      list-style: none;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      transition: color 0.2s;
+      position: relative;
+      padding-bottom: 6px;
+      color: var(--carbon);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--dorado);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--dorado);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--negro);
+      cursor: pointer;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(rgba(26, 26, 26, 0.5), rgba(26, 26, 26, 0.5)), url('https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=2071&auto=format&fit=crop') center/cover no-repeat;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 40px 20px;
+    }
+
+    .hero-content .pretitle {
+      font-size: 0.85rem;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--dorado-claro);
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .hero-content h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      line-height: 1.1;
+      text-shadow: 2px 2px 12px rgba(0,0,0,0.3);
+      letter-spacing: 2px;
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      margin-bottom: 36px;
+      font-weight: 300;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ===== SECCIONES ===== */
+    .section-title {
+      text-align: center;
+      font-size: 2.6rem;
+      margin-bottom: 12px;
+      color: var(--negro);
+      letter-spacing: 2px;
+    }
+
+    .section-divider {
+      width: 80px;
+      height: 2px;
+      background-color: var(--dorado);
+      margin: 0 auto 20px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--gris);
+      margin-bottom: 50px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    /* ===== GET THE BASICS ===== */
+    .basics {
+      padding: 100px 0;
+      background-color: var(--beige);
+    }
+
+    .basics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .basics-text h2 {
+      font-size: 2.8rem;
+      margin-bottom: 24px;
+      color: var(--negro);
+      line-height: 1.2;
+    }
+
+    .basics-text .divider-left {
+      width: 60px;
+      height: 2px;
+      background-color: var(--dorado);
+      margin-bottom: 28px;
+    }
+
+    .basics-text p {
+      margin-bottom: 20px;
+      font-weight: 300;
+      color: #5a5a5a;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .basics-image {
+      position: relative;
+    }
+
+    .basics-image img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+
+    .basics-image::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--dorado);
+      z-index: -1;
+    }
+
+    /* ===== SIMPLICITY ===== */
+    .simplicity {
+      padding: 100px 0;
+      background-color: var(--crema);
+      text-align: center;
+    }
+
+    .simplicity h2 {
+      font-size: 3rem;
+      color: var(--negro);
+      margin-bottom: 24px;
+      letter-spacing: 3px;
+      line-height: 1.2;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .simplicity .subtitle-line {
+      font-size: 1.3rem;
+      color: var(--dorado);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      margin-bottom: 32px;
+      letter-spacing: 1px;
+    }
+
+    .simplicity p {
+      max-width: 700px;
+      margin: 0 auto 36px;
+      font-weight: 300;
+      color: #5a5a5a;
+      font-size: 1.05rem;
+      line-height: 1.9;
+    }
+
+    /* ===== GET INSPIRED (PRODUCTOS) ===== */
+    .inspired {
+      padding: 100px 0;
+      background-color: var(--beige);
+    }
+
+    .inspired-hashtag {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--dorado);
+      margin-bottom: 50px;
+      letter-spacing: 2px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .product-card {
+      position: relative;
+      overflow: hidden;
+      height: 450px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .product-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .product-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 40px 24px 24px;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      color: white;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover .product-overlay {
+      transform: translateY(0);
+    }
+
+    .product-overlay h3 {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+
+    .product-overlay span {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dorado-claro);
+      font-weight: 700;
+    }
+
+    /* ===== NEWSLETTER / SUBSCRIBE ===== */
+    .newsletter {
+      padding: 100px 0;
+      background: linear-gradient(rgba(26, 26, 26, 0.85), rgba(26, 26, 26, 0.85)), url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+      text-align: center;
+      color: white;
+    }
+
+    .newsletter h2 {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+      color: white;
+      letter-spacing: 3px;
+    }
+
+    .newsletter .divider-center {
+      width: 80px;
+      height: 2px;
+      background: var(--dorado);
+      margin: 0 auto 24px;
+    }
+
+    .newsletter p {
+      font-size: 1.05rem;
+      margin-bottom: 36px;
+      font-weight: 300;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #e0e0e0;
+    }
+
+    .newsletter-form {
+      display: flex;
+      max-width: 550px;
+      margin: 0 auto;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      min-width: 250px;
+      padding: 15px 20px;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      border-bottom: 2px solid var(--dorado);
+      outline: none;
+      transition: background-color 0.3s;
+    }
+
+    .newsletter-form input::placeholder {
+      color: #b0b0b0;
+      letter-spacing: 1px;
+    }
+
+    .newsletter-form input:focus {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .newsletter-form .btn {
+      background-color: var(--dorado);
+      border-color: var(--dorado);
+      color: var(--negro);
+    }
+
+    .newsletter-form .btn:hover {
+      background-color: transparent;
+      color: var(--dorado);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background-color: var(--negro);
+      color: #b0b0b0;
+      padding: 70px 0 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-col h4 {
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 24px;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+      font-weight: 300;
+    }
+
+    .footer-col a {
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: var(--dorado);
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: white;
+      letter-spacing: 5px;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .footer-col p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid #444;
+      border-radius: 50%;
+      transition: all 0.3s;
+      color: #b0b0b0;
+    }
+
+    .social-icons a:hover {
+      border-color: var(--dorado);
+      color: var(--dorado);
+      background-color: rgba(201, 169, 97, 0.1);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #333;
+      font-size: 0.85rem;
+      color: #888;
+      line-height: 1.8;
+    }
+
+    .footer-owner {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--dorado);
+      letter-spacing: 2px;
+      font-style: italic;
+      margin-top: 8px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .basics-image img {
+        height: 420px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .basics-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+      .basics-image img {
+        height: 380px;
+      }
+      .basics-image::before {
+        display: none;
+      }
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hero-content h1 {
+        font-size: 3rem;
+      }
+      .simplicity h2 {
+        font-size: 2.4rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--crema);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 99;
+        font-size: 1.1rem;
+        padding: 0;
+      }
+
+      .nav-links.active {
+        transform: translateX(0);
+      }
+
+      .hero-content h1 {
+        font-size: 2.4rem;
+        letter-spacing: 1px;
+      }
+
+      .hero-content {
+        padding: 30px 20px;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .basics-text h2 {
+        font-size: 2.2rem;
+      }
+
+      .simplicity h2 {
+        font-size: 2rem;
+      }
+
+      .newsletter h2 {
+        font-size: 2rem;
+      }
+
+      .logo-nombre {
+        font-size: 1.8rem;
+        letter-spacing: 3px;
+      }
+
+      .logo-icono {
+        width: 45px;
+        height: 45px;
+      }
+
+      .logo-icono i {
+        font-size: 1.4rem;
+      }
+
+      .logo-tagline {
+        font-size: 0.55rem;
+        letter-spacing: 2px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 0;
+      }
+      .header-inner {
+        padding: 14px 0;
+      }
+      .logo-nombre {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+      }
+      .logo-icono {
+        width: 40px;
+        height: 40px;
+      }
+      .logo-icono i {
+        font-size: 1.2rem;
+      }
+      .logo-tagline {
+        font-size: 0.5rem;
+        letter-spacing: 1.5px;
+      }
+      .hero-content h1 {
+        font-size: 1.9rem;
+      }
+      .hero-content .pretitle {
+        font-size: 0.7rem;
+        letter-spacing: 3px;
+      }
+      .btn {
+        padding: 12px 28px;
+        font-size: 0.7rem;
+      }
+      .section-title {
+        font-size: 1.7rem;
+      }
+      .simplicity h2 {
+        font-size: 1.7rem;
+      }
+      .newsletter-form {
+        flex-direction: column;
+      }
+      .newsletter-form input {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER CON LOGO ANIMADO Y MENÚ ===== -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo-animado">
+        <div class="logo-icono">
+          <i class="fas fa-tshirt"></i>
+        </div>
+        <div class="logo-texto">
+          <div class="logo-nombre">MALU</div>
+          <div class="logo-tagline">Venta de Ropa</div>
+        </div>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#basics">Menú</a></li>
+        <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="inicio">
+      <div class="hero-content">
+        <div class="pretitle">Bienvenidos a MALU</div>
+        <h1>GET THE BASICS</h1>
+        <p>Descubre la elegancia de lo simple. Prendas seleccionadas con estilo, calidad y sofisticación para cada ocasión.</p>
+        <a href="#basics" class="btn">Explorar colección</a>
+      </div>
+    </section>
+
+    <!-- ===== GET THE BASICS / MENÚ ===== -->
+    <section class="basics" id="basics">
+      <div class="container basics-grid">
+        <div class="basics-text">
+          <h2>GET THE BASICS</h2>
+          <div class="divider-left"></div>
+          <p>I'm a paragraph. Click here to add your own text and edit me. I'm a great place for you to tell a story and let your users know a little more about you.</p>
+          <p>En MALU seleccionamos cada prenda pensando en ti. Ropa que combina comodidad, estilo y calidad para que te sientas única en cada momento.</p>
+          <a href="#sobre-nosotros" class="btn btn-outline">Conócenos</a>
+        </div>
+        <div class="basics-image">
+          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop" alt="Moda elegante MALU">
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SIMPLICITY ===== -->
+    <section class="simplicity">
+      <div class="container">
+        <h2>SIMPLICITY<br>IS THE ULTIMATE SOPHISTICATION</h2>
+        <p class="subtitle-line">La elegancia está en los detalles</p>
+        <p>I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click "Edit Text" or double click me to add your own content and make changes to the font. I'm a great place for you to tell a story and let your users know a little more about you.</p>
+        <a href="#inspired" class="btn">Ver más</a>
+      </div>
+    </section>
+
+    <!-- ===== GET INSPIRED ===== -->
+    <section class="inspired" id="inspired">
+      <div class="container">
+        <h2 class="section-title">GET INSPIRED</h2>
+        <div class="section-divider"></div>
+        <div class="inspired-hashtag">#basically</div>
+
+        <div class="product-grid">
+          <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=2070&auto=format&fit=crop" alt="Prenda casual">
+            <div class="product-overlay">
+              <h3>Casual</h3>
+              <span>Ver colección →</span>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=1974&auto=format&fit=crop" alt="Prenda elegante">
+            <div class="product-overlay">
+              <h3>Elegante</h3>
+              <span>Ver colección →</span>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop" alt="Prenda de temporada">
+            <div class="product-overlay">
+              <h3>Temporada</h3>
+              <span>Ver colección →</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SOBRE NOSOTROS ===== -->
+    <section class="basics" id="sobre-nosotros" style="background-color: var(--crema);">
+      <div class="container basics-grid">
+        <div class="basics-image" style="order: 2;">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop" alt="Tienda MALU">
+        </div>
+        <div class="basics-text" style="order: 1;">
+          <h2>Sobre Nosotros</h2>
+          <div class="divider-left"></div>
+          <p>MALU nació con la pasión de ofrecer ropa que combine estilo y calidad. Cada prenda de nuestra colección está cuidadosamente seleccionada para que encuentres esa pieza especial que te haga sentir única.</p>
+          <p>Creemos que la moda no tiene que ser complicada. Lo simple, bien elegido, es la verdadera sofisticación. Nuestro compromiso es ofrecerte las mejores tendencias con un servicio cercano y personalizado.</p>
+          <ul style="list-style: none; margin: 28px 0 32px;">
+            <li style="margin-bottom: 14px; display: flex; align-items: center; gap: 14px; font-size: 1rem; color: #4a3a2b;">
+              <i class="fas fa-check-circle" style="color: var(--dorado); font-size: 1.2rem;"></i> Prendas seleccionadas con cuidado
+            </li>
+            <li style="margin-bottom: 14px; display: flex; align-items: center; gap: 14px; font-size: 1rem; color: #4a3a2b;">
+              <i class="fas fa-check-circle" style="color: var(--dorado); font-size: 1.2rem;"></i> Calidad y estilo garantizados
+            </li>
+            <li style="margin-bottom: 14px; display: flex; align-items: center; gap: 14px; font-size: 1rem; color: #4a3a2b;">
+              <i class="fas fa-check-circle" style="color: var(--dorado); font-size: 1.2rem;"></i> Atención personalizada
+            </li>
+            <li style="margin-bottom: 14px; display: flex; align-items: center; gap: 14px; font-size: 1rem; color: #4a3a2b;">
+              <i class="fas fa-check-circle" style="color: var(--dorado); font-size: 1.2rem;"></i> Moda para cada ocasión
+            </li>
+          </ul>
+          <a href="#contacto" class="btn btn-outline">Contáctanos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== NEWSLETTER / SUBSCRIBE ===== -->
+    <section class="newsletter" id="contacto">
+      <div class="container">
+        <h2>Subscribe</h2>
+        <div class="divider-center"></div>
+        <p>Recibe nuestras novedades, ofertas exclusivas y las últimas tendencias directamente en tu correo. ¡Sé la primera en enterarte!</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte a MALU!');">
+          <input type="email" placeholder="Tu correo electrónico" required>
+          <button type="submit" class="btn">Suscribirme</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">MALU</div>
+          <p>Moda con estilo, calidad y sofisticación. Encuentra las mejores prendas para cada ocasión.</p>
+          <div class="social-icons">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Tienda</h4>
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#basics">Menú</a></li>
+            <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Atención al cliente</h4>
+          <ul>
+            <li><a href="#">Envíos y devoluciones</a></li>
+            <li><a href="#">Guía de tallas</a></li>
+            <li><a href="#">Preguntas frecuentes</a></li>
+            <li><a href="#">Política de privacidad</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><i class="fas fa-map-marker-alt" style="margin-right: 10px; color: var(--dorado);"></i> Av. Los Rosales 122, Madrid</li>
+            <li><i class="fas fa-phone" style="margin-right: 10px; color: var(--dorado);"></i> +34 912 345 678</li>
+            <li><i class="fas fa-envelope" style="margin-right: 10px; color: var(--dorado);"></i> info@malu.com</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 MALU Venta de Ropa. Todos los derechos reservados.</p>
+        <p class="footer-owner">Propietaria: Marilú Fiestas Zevallos</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== JAVASCRIPT MENÚ RESPONSIVE ===== -->
+  <script>
+    (function() {
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function() {
+          navLinks.classList.toggle('active');
+          const icon = menuToggle.querySelector('i');
+          if (navLinks.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+          } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+          }
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+              navLinks.classList.remove('active');
+              const icon = menuToggle.querySelector('i');
+              icon.classList.remove('fa-times');
+              icon.classList.add('
